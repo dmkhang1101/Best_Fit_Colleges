@@ -4,34 +4,31 @@ import { Box, IconButton } from '@mui/material';
 import {
   Edit as EditIcon,
   Delete as DeleteIcon,
-  Email as EmailIcon,
 } from '@mui/icons-material';
 
-initialData = []
+const initialData = [
+  {
+    main: 'Main Ranking 1',
+    add: 'Additional Ranking 2',
+    weight: '0.1'
+  }
+]
 
 export const Table = () => {
     
   const columns = useMemo(
     () => [
       {
-        accessorKey: 'firstName',
-        header: 'First Name',
+        accessorKey: 'main',
+        header: 'Main Ranking',
       },
       {
-        accessorKey: 'lastName',
-        header: 'Last Name',
+        accessorKey: 'add',
+        header: 'Additional Ranking',
       },
       {
-        accessorKey: 'address',
-        header: 'Address',
-      },
-      {
-        accessorKey: 'city',
-        header: 'City',
-      },
-      {
-        accessorKey: 'state',
-        header: 'State',
+        accessorKey: 'weight',
+        header: 'Weight',
       },
     ],
     [],
@@ -46,23 +43,13 @@ export const Table = () => {
       layoutMode="grid"
       displayColumnDefOptions={{
         'mrt-row-actions': {
-          size: 180, 
+          size: 200, 
           grow: false,
         },
       }}
       enableRowActions
       renderRowActions={({ row, table }) => (
         <Box sx={{ display: 'flex', flexWrap: 'nowrap', gap: '8px' }}>
-          <IconButton
-            color="primary"
-            onClick={() =>
-              window.open(
-                `mailto:kevinvandy@mailinator.com?subject=Hello ${row.original.firstName}!`,
-              )
-            }
-          >
-            <EmailIcon />
-          </IconButton>
           <IconButton
             color="secondary"
             onClick={() => {
@@ -74,7 +61,7 @@ export const Table = () => {
           <IconButton
             color="error"
             onClick={() => {
-              data.splice(row.index, 1); //assuming simple data table
+              data.splice(row.index, 1);
               setData([...data]);
             }}
           >
