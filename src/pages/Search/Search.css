@@ -1,18 +1,17 @@
 .search{
-    position: absolute;
-    top: 25%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 10px;
     background-color: inherit;
-    width:100%;
-    text-align:center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:stretch;
+    padding: 50px;
 }
 
 .search_input{
     display:flex;
     flex-direction: row;
-    justify-content : space-evenly; 
+    justify-content : space-around; 
+    padding: 20px;
 }
 
 .search_title{
