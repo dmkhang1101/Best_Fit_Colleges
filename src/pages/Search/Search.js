@@ -6,7 +6,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import Button from '@mui/material/Button';
-import Table from "../../components/Table";
+// import Table from "../../components/table/Table.js";
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
@@ -141,7 +141,7 @@ function Search(){
             <div className = "search_input">
                 <Button variant="contained" sx={{ width: 550 }}>Submit</Button>
             </div>
-            <Table/>
+            {/* <Table/> */}
             <br/>
         </div>
         
