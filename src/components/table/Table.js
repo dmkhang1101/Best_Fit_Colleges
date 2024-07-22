@@ -1,21 +1,15 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useContext } from 'react';
 import { MaterialReactTable } from 'material-react-table';
 import { Box, IconButton } from '@mui/material';
 import {
   Edit as EditIcon,
   Delete as DeleteIcon,
 } from '@mui/icons-material';
-
-const initialData = [
-  {
-    main: 'Main Ranking 1',
-    add: 'Additional Ranking 2',
-    weight: '0.1'
-  }
-]
+import { UserContext } from '../../controllers/User';
 
 export const Table = () => {
-    
+  const user = useContext(UserContext);
+  
   const columns = useMemo(
     () => [
       {
@@ -34,12 +28,10 @@ export const Table = () => {
     [],
   );
 
-  const [data, setData] = useState(initialData);
-
   return (
     <MaterialReactTable
       columns={columns}
-      data={data}
+      data={user.userData}
       layoutMode="grid"
       displayColumnDefOptions={{
         'mrt-row-actions': {
@@ -61,8 +53,9 @@ export const Table = () => {
           <IconButton
             color="error"
             onClick={() => {
-              data.splice(row.index, 1);
-              setData([...data]);
+              const curr = user.userData;
+              curr.splice(row.index, 1);
+              user.setUserData([...curr]);
             }}
           >
             <DeleteIcon />

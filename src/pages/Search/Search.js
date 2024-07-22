@@ -7,6 +7,8 @@ import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import Button from '@mui/material/Button';
 import Table from "../../components/table/Table.js";
+import { UserContext } from '../../controllers/User';
+import { useNavigate } from 'react-router-dom';
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
@@ -24,6 +26,49 @@ const stateNames = [
   ];
 
 function Search(){
+    const navigate = useNavigate()
+    const user = React.useContext(UserContext);
+
+    const [main, setMain] = React.useState("");
+    const [add, setAdd] = React.useState("");
+    const [weight, setWeight] = React.useState("");
+    const [setting, setSetting] = React.useState([]);
+    const [type, setType] = React.useState([]);
+    const [location, setLocation] = React.useState([]);
+
+    const handleAdd = () => {
+        if (main === ""){
+            alert("Please select Main Ranking.")
+            return
+        }
+        if (weight === "" || parseFloat(weight) < 0 || parseFloat(weight) > 1){
+            alert("Please fill in appropriate Weight.")
+            return
+        }
+        else{
+            const curr = user.userData
+            curr.push({
+                main: main,
+                add: add,
+                weight: weight,
+            })
+            user.setUserData([...curr])
+        }
+    }
+
+    const handleSubmit = () => {
+        if (user.userData.length === 0){
+            alert("Please select Main Ranking.")
+            return
+        }
+        else{
+            user.filters.setting = setting;
+            user.filters.type = type;
+            user.filters.location = location;
+            // navigate('Search_Result')
+        }
+    }
+
     return (
         <div className="search">
             <h1>Welcome to Search Page</h1>
@@ -36,6 +81,7 @@ function Search(){
                         options={mainRanking}
                         sx={{ width: 500 }}
                         renderInput={(params) => <TextField {...params} label="Select Main Ranking" />}
+                        onChange = {(e,value) => setMain(e.target.innerHTML)}
                     />
                     <br/>
                     <Autocomplete
@@ -44,6 +90,7 @@ function Search(){
                         options={addRanking}
                         sx={{ width: 500 }}
                         renderInput={(params) => <TextField {...params} label="Select Additional Ranking (Optional)" />}
+                        onChange = {(e,value) => setAdd(e.target.innerHTML)}
                     />
                     <br/>
                     <TextField 
@@ -51,9 +98,14 @@ function Search(){
                         label="Weight (0 to 1)" 
                         variant="outlined"
                         sx={{ width: 500 }}
+                        onChange = {(e,value) => {
+                            setWeight(e.target.value)
+                        }}
                     />
                     <br/>
-                    <Button variant="contained" sx={{ width: 500 }}>Add</Button>
+                    <Button variant="contained" sx={{ width: 500 }} onClick = {handleAdd}>
+                        Add
+                    </Button>
 
                 </div>
 
@@ -83,6 +135,7 @@ function Search(){
                         renderInput={(params) => (
                             <TextField {...params} label="Setting"/>
                         )}
+                        onChange = {(e,value) => setSetting(value)}
                     />
                     <br/>
                     <Autocomplete
@@ -109,6 +162,7 @@ function Search(){
                         renderInput={(params) => (
                             <TextField {...params} label="Private/Public"/>
                         )}
+                        onChange = {(e,value) => setType(value)}
                     />
                     <br/>
                     <Autocomplete
@@ -135,11 +189,14 @@ function Search(){
                         renderInput={(params) => (
                             <TextField {...params} label="Location" />
                         )}
+                        onChange = {(e,value) => setLocation(value)}
                     />
                 </div>
             </div>
             <div className = "search_input">
-                <Button variant="contained" sx={{ width: 550 }}>Submit</Button>
+                <Button variant="contained" sx={{ width: 550 }} onClick = {handleSubmit}>
+                    Submit
+                </Button>
             </div>
             <Table/>
             <br/>
