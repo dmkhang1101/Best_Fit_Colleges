@@ -40,5 +40,12 @@
 .compare_list{
     padding-top : 20px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+}
+
+.list_item{
+    padding: 20px;
+    background-color: rgb(211, 233, 252);
+    text-align: center;
+    border-radius: 10px;
 }

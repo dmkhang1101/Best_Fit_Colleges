@@ -33,7 +33,6 @@ function Compare(){
     const [weight, setWeight] = React.useState("");
     const [expanded1,setExpanded1] = React.useState(true)
     const [expanded2,setExpanded2] = React.useState(false)
-    const [selectedColleges, setSelectedColleges] = React.useState([])
 
     const handleAdd = () => {
         if (main === ""){
@@ -56,7 +55,7 @@ function Compare(){
     }
 
     const handleSubmit = () => {
-        if (selectedColleges.length <= 1){
+        if (user.compareColleges.length <= 1){
             alert("Please select at least two colleges to compare.")
             return
         }
@@ -65,7 +64,6 @@ function Compare(){
             return
         }
         else{
-            user.setCompareColleges([...selectedColleges])
             // navigate('Compare_Result')
         }
     }
@@ -82,7 +80,7 @@ function Compare(){
                             <div className = "compare_title">Step 1</div>
                             <Button variant="contained" sx={{ width: 180 }} 
                             onClick = {() => {
-                                if (selectedColleges.length <= 1){
+                                if (user.compareColleges.length <= 1){
                                     alert("Please select at least two colleges to compare.")
                                     return
                                 }
@@ -122,15 +120,15 @@ function Compare(){
                                 renderInput={(params) => (
                                     <TextField {...params} label="Search for Colleges" placeholder="Colleges" />
                                 )}
-                                onChange = {(e,value) => setSelectedColleges(value)}
+                                onChange = {(e,value) => user.setCompareColleges(value)}
                             />
 
                             <Grid item xs={12} md={6}>
                                 <List dense={false}>
-                                {selectedColleges.map((value) => {
+                                {user.compareColleges.map((value) => {
                                     return (
                                         <ListItem className = "compare_list">
-                                            <ListItemText primary={value}/>
+                                            <ListItemText primary={value} className = "list_item"/>
                                         </ListItem>
                                     )
                                 })}
@@ -185,7 +183,7 @@ function Compare(){
                             />
                             <br/>
                             <div className = "button_wrapper">
-                                <Button variant="contained" sx={{ width: 400 }} onClick = {handleAdd}>
+                                <Button variant="contained" sx={{ width: 300 }} onClick = {handleAdd}>
                                     Add
                                 </Button>
                             </div>
