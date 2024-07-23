@@ -2,7 +2,6 @@ import { useMemo, useContext } from 'react';
 import { MaterialReactTable } from 'material-react-table';
 import { Box, IconButton } from '@mui/material';
 import {
-  Edit as EditIcon,
   Delete as DeleteIcon,
 } from '@mui/icons-material';
 import { UserContext } from '../../controllers/User';
@@ -42,14 +41,6 @@ export const Table = () => {
       enableRowActions
       renderRowActions={({ row, table }) => (
         <Box sx={{ display: 'flex', flexWrap: 'nowrap', gap: '8px' }}>
-          <IconButton
-            color="secondary"
-            onClick={() => {
-              table.setEditingRow(row);
-            }}
-          >
-            <EditIcon />
-          </IconButton>
           <IconButton
             color="error"
             onClick={() => {
