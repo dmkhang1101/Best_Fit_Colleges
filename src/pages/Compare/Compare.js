@@ -70,7 +70,7 @@ function Compare(){
 
     return (
         <div className="compare">
-            <h1>Welcome to Compare Page</h1>
+            <h1>Welcome to Compare Page.</h1>
             <div className = "compare_wrapper">
                 <Accordion expanded={expanded1}>
                     <AccordionSummary
@@ -95,7 +95,7 @@ function Compare(){
                     </AccordionSummary>
                     <AccordionDetails>
                         <div className = "step_body">
-                            <p className="search_title">Select your Colleges for Comparison</p>
+                            <p className="search_title">Select your Colleges for Comparison.</p>
                             <Autocomplete
                                 multiple
                                 id="checkboxes-tags-demo"
@@ -156,7 +156,7 @@ function Compare(){
                     </AccordionSummary>
                     <AccordionDetails>
                         <div className = "step_body">
-                            <p className="search_title">Select your Ranking Criteria</p>
+                            <p className="search_title">Select your Ranking Criteria.</p>
                             <Autocomplete
                                 disablePortal
                                 id="combo-box-demo"

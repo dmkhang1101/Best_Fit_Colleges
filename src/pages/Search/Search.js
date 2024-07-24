@@ -71,10 +71,10 @@ function Search(){
 
     return (
         <div className="search">
-            <h1>Welcome to Search Page</h1>
+            <h1>Welcome to Search Page.</h1>
             <div className ="search_input">
                 <div className ="search_wrapper">
-                    <p className="search_title">Select your Ranking</p>
+                    <p className="search_title">Select your Ranking Criteria</p>
                     <Autocomplete
                         disablePortal
                         id="combo-box-demo"
@@ -194,7 +194,7 @@ function Search(){
                 </div>
             </div>
             <div className = "search_input">
-                <Button variant="contained" sx={{ width: 550 }} onClick = {handleSubmit}>
+                <Button variant="contained" sx={{ width: 400 }} onClick = {handleSubmit}>
                     Submit
                 </Button>
             </div>

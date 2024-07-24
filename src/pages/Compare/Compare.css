@@ -4,11 +4,11 @@
     flex-direction: column;
     justify-content: center;
     align-items:stretch;
-    padding: 50px;
+    padding: 20px 50px;
 }
 
 .compare_wrapper{
-    padding: 50px;
+    padding: 20px;
 }
 
 .compare_header{
@@ -16,7 +16,7 @@
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
-    padding: 20px;
+    padding: 10px 20px;
 }
 
 .step_body{
@@ -27,7 +27,7 @@
 }
 
 .compare_title{
-    font-size: 40px;
+    font-size: 35px;
     font-weight: 600;
 }
 
