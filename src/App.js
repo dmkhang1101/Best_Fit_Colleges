@@ -117,7 +117,10 @@ export default function App(){
         () =>
         createTheme({
             palette: {
-            mode,
+                primary: {
+                    main: '#4fc3f7',
+                },
+                mode,
             },
         }),
         [mode],
