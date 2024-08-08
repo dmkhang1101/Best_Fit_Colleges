@@ -4,6 +4,7 @@ import { UserContext } from '../../controllers/User';
 
 const test_result = [
     {
+        overall_score : 50,
         name : 'University of California, Berkeley',
         group : 'National Universities',
         location : 'Berkeley, CA',
@@ -29,6 +30,7 @@ const test_result = [
         },
     },
     {
+        overall_score : 40,
         name : 'University of Texas at Austin',
         group : 'National Universities',
         location : 'Austin, TX',
@@ -54,6 +56,7 @@ const test_result = [
         },
     },
     {
+        overall_score : 42,
         name : 'Amherst College',
         group : 'National Liberal Arts Colleges',
         location : 'Amherst, MA',
@@ -104,10 +107,10 @@ export const ResultTable = () => {
                 const scoreA = rowA.original.tuition_fee.score
                 const scoreB = rowB.original.tuition_fee.score
                 if (scoreA > scoreB){
-                    return 1
+                    return -1
                 }
                 else if (scoreA < scoreB){
-                    return -1
+                    return 1
                 }
                 return 0
             }
@@ -119,10 +122,10 @@ export const ResultTable = () => {
                 const scoreA = rowA.original.general_ranking.score
                 const scoreB = rowB.original.general_ranking.score
                 if (scoreA > scoreB){
-                    return 1
+                    return -1
                 }
                 else if (scoreA < scoreB){
-                    return -1
+                    return 1
                 }
                 return 0
             }
@@ -134,10 +137,10 @@ export const ResultTable = () => {
                 const scoreA = rowA.original.main_ranking.score
                 const scoreB = rowB.original.main_ranking.score
                 if (scoreA > scoreB){
-                    return 1
+                    return -1
                 }
                 else if (scoreA < scoreB){
-                    return -1
+                    return 1
                 }
                 return 0
             }
@@ -155,21 +158,20 @@ export const ResultTable = () => {
                 const scoreA = rowA.original[ar].score
                 const scoreB = rowB.original[ar].score
                 if (scoreA > scoreB){
-                    return 1
+                    return -1
                 }
                 else if (scoreA < scoreB){
-                    return -1
+                    return 1
                 }
                 return 0
             }
         })
     })
 
-
     return (
         <MaterialReactTable
             columns={columns}
-            data={test_result}
+            data={test_result.sort((a,b) => b.overall_score-a.overall_score)}
             layoutMode="grid"
             enableColumnResizing
         />
