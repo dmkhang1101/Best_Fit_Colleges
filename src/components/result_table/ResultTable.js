@@ -83,6 +83,18 @@ const test_result = [
     }
 ]
 
+const sortingFunction = (rowA,rowB,key) =>{
+    const scoreA = rowA.original[key].score
+    const scoreB = rowB.original[key].score
+    if (scoreA > scoreB){
+        return -1
+    }
+    else if (scoreA < scoreB){
+        return 1
+    }
+    return 0
+}
+
 export const ResultTable = () => {
 
  const user = useContext(UserContext)
@@ -103,68 +115,28 @@ export const ResultTable = () => {
         {
             accessorFn: (row) => `${row.tuition_fee.value}`,        
             header: 'Tuition Fee',
-            sortingFn : (rowA, rowB) => {
-                const scoreA = rowA.original.tuition_fee.score
-                const scoreB = rowB.original.tuition_fee.score
-                if (scoreA > scoreB){
-                    return -1
-                }
-                else if (scoreA < scoreB){
-                    return 1
-                }
-                return 0
-            }
+            sortingFn : (rowA, rowB) => sortingFunction(rowA,rowB,'tuition_fee')
         },
         {
             accessorFn: (row) => `${row.general_ranking.value}`,        
             header: 'General Ranking',
-            sortingFn : (rowA, rowB) => {
-                const scoreA = rowA.original.general_ranking.score
-                const scoreB = rowB.original.general_ranking.score
-                if (scoreA > scoreB){
-                    return -1
-                }
-                else if (scoreA < scoreB){
-                    return 1
-                }
-                return 0
-            }
+            sortingFn : (rowA, rowB) => sortingFunction(rowA,rowB,'general_ranking')
         },
         {
             accessorFn: (row) => `${row.main_ranking.value}`,        
             header: 'Main Ranking',
-            sortingFn : (rowA, rowB) => {
-                const scoreA = rowA.original.main_ranking.score
-                const scoreB = rowB.original.main_ranking.score
-                if (scoreA > scoreB){
-                    return -1
-                }
-                else if (scoreA < scoreB){
-                    return 1
-                }
-                return 0
-            }
+            sortingFn : (rowA, rowB) => sortingFunction(rowA,rowB,'main_ranking')
         },
         ],
         [],
     );
 
-    const add_rankings = Object.keys(test_result[0]).slice(6)
+    const add_rankings = Object.keys(test_result[0]).slice(7)
     add_rankings.map(ar => {
         columns.push({
             accessorFn: (row) => `${row[ar].value}`,
             header: ar,
-            sortingFn : (rowA, rowB) => {
-                const scoreA = rowA.original[ar].score
-                const scoreB = rowB.original[ar].score
-                if (scoreA > scoreB){
-                    return -1
-                }
-                else if (scoreA < scoreB){
-                    return 1
-                }
-                return 0
-            }
+            sortingFn : (rowA, rowB) => sortingFunction(rowA,rowB,ar)
         })
     })
 
