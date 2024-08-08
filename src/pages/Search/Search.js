@@ -65,7 +65,7 @@ function Search(){
             user.filters.setting = setting;
             user.filters.type = type;
             user.filters.location = location;
-            // navigate('Search_Result')
+            navigate('../result')
         }
     }
 

@@ -2,6 +2,7 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import Home from './pages/Home/Home.js'
 import Search from './pages/Search/Search.js'
 import Compare from './pages/Compare/Compare.js'
+import Result from './pages/Result/Result.js'
 import './App.css'
 import * as React from 'react';
 import IconButton from '@mui/material/IconButton';
@@ -96,6 +97,7 @@ function MyApp() {
                     <Route path='/' element ={<Home/>}/>
                     <Route path='search' element = {<Search/>}/>
                     <Route path='compare' element = {<Compare/>}/>
+                    <Route path='result' element = {<Result/>}/> 
                 </Routes>
             </BrowserRouter>
         </div>

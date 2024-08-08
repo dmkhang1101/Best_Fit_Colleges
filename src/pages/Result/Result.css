@@ -1,0 +1,8 @@
+.result{
+    background-color: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:stretch;
+    padding: 20px 50px;
+}

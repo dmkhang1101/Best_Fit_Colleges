@@ -64,7 +64,7 @@ function Compare(){
             return
         }
         else{
-            // navigate('Compare_Result')
+            navigate('../result')
         }
     }
 
