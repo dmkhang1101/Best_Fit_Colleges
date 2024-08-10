@@ -19,6 +19,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import HomeIcon from '@mui/icons-material/Home';
 import SearchIcon from '@mui/icons-material/Search';
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
+import Avatar from '@mui/material/Avatar';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from './controllers/User.js';
 
@@ -26,11 +27,19 @@ const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 const pages = ['Home','Search','Compare']
 const icons = [ <HomeIcon/>, <SearchIcon/>, <CompareArrowsIcon/> ]
 
+function stringAvatar(name) {
+    return {
+      children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
+    };
+  }
+  
+
 function Header (){
     const navigate = useNavigate()
     const theme = useTheme();
     const colorMode = React.useContext(ColorModeContext);
     const user = React.useContext(UserContext);
+    const username = 'Khang Do';
         
     const handleReset = (page) => {
         if (page === "Home"){
@@ -84,7 +93,8 @@ function Header (){
                     <div className = "header_buttons">
                         {user.isLoggedIn ? 
                         <div className = "header_button">
-                            Welcome, User.
+                            <div>Welcome, {username}.</div>
+                            <Avatar {...stringAvatar(username)} />
                         </div> : 
                         <div className = "header_button">
                             <Button variant="contained" onClick = {() => navigate('signin')}>Sign In</Button>
