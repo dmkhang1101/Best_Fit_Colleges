@@ -3,6 +3,8 @@ import Home from './pages/Home/Home.js'
 import Search from './pages/Search/Search.js'
 import Compare from './pages/Compare/Compare.js'
 import Result from './pages/Result/Result.js'
+import SignIn from './pages/Sign In/SignIn.js'
+import SignUp from './pages/Sign Up/SignUp.js'
 import './App.css'
 import * as React from 'react';
 import IconButton from '@mui/material/IconButton';
@@ -78,10 +80,21 @@ function Header (){
                         </Button>
                         ))}
                     </div>
-
-                    <IconButton onClick={colorMode.toggleColorMode} color="inherit">
-                    {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
-                    </IconButton>
+                  
+                    <div className = "header_buttons">
+                        {user.isLoggedIn ? 
+                        <div className = "header_button">
+                            Welcome, User.
+                        </div> : 
+                        <div className = "header_button">
+                            <Button variant="contained" onClick = {() => navigate('signin')}>Sign In</Button>
+                            <Button variant="contained" onClick = {() => navigate('signup')}>Sign Up</Button>
+                        </div>
+                        }
+                        <IconButton onClick={colorMode.toggleColorMode} color="inherit">
+                        {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
+                        </IconButton>
+                    </div>
                 </Box>
             </Toolbar>
         </AppBar>
@@ -98,6 +111,8 @@ function MyApp() {
                     <Route path='search' element = {<Search/>}/>
                     <Route path='compare' element = {<Compare/>}/>
                     <Route path='result' element = {<Result/>}/> 
+                    <Route path='signin' element = {<SignIn/>}/>
+                    <Route path='signup' element = {<SignUp/>}/>
                 </Routes>
             </BrowserRouter>
         </div>

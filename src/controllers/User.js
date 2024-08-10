@@ -3,6 +3,8 @@ import React, { useState, createContext} from 'react';
 export const UserContext = createContext();
 
 export function UserInfo({ children }) {
+  const [isLoggedIn, setLogIn] = useState(false)
+
   const [userData, setUserData] = useState([]);
 
   const [filters, setFilters] = useState({
@@ -14,7 +16,7 @@ export function UserInfo({ children }) {
   const [compareColleges, setCompareColleges] = useState([])
 
   return (
-    <UserContext.Provider value={{userData, filters, compareColleges, setUserData, setFilters, setCompareColleges}}>
+    <UserContext.Provider value={{isLoggedIn, userData, filters, compareColleges, setLogIn, setUserData, setFilters, setCompareColleges}}>
       {children}
     </UserContext.Provider>
   );
