@@ -12,6 +12,10 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import Tooltip from '@mui/material/Tooltip';
+import Typography from '@mui/material/Typography';
+import MenuItem from '@mui/material/MenuItem';
+import Menu from '@mui/material/Menu';
 import { useTheme, ThemeProvider, createTheme } from '@mui/material/styles';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
@@ -26,6 +30,7 @@ import { UserContext } from './controllers/User.js';
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 const pages = ['Home','Search','Compare']
 const icons = [ <HomeIcon/>, <SearchIcon/>, <CompareArrowsIcon/> ]
+const settings = ['Saved Searches', 'Saved School Lists', 'Logout'];
 
 function stringAvatar(name) {
     return {
@@ -33,13 +38,21 @@ function stringAvatar(name) {
     };
   }
   
-
 function Header (){
     const navigate = useNavigate()
     const theme = useTheme();
     const colorMode = React.useContext(ColorModeContext);
     const user = React.useContext(UserContext);
     const username = 'Khang Do';
+    const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+    const handleOpenUserMenu = (event) => {
+        setAnchorElUser(event.currentTarget);
+    };
+
+    const handleCloseUserMenu = (setting) => {
+        setAnchorElUser(null);
+    };
         
     const handleReset = (page) => {
         if (page === "Home"){
@@ -94,8 +107,35 @@ function Header (){
                         {user.isLoggedIn ? 
                         <div className = "header_button">
                             <div>Welcome, {username}.</div>
-                            <Avatar {...stringAvatar(username)} />
+                            <Tooltip title="Open settings">
+                                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                                    <Avatar {...stringAvatar(username)} />
+                                </IconButton>
+                            </Tooltip>
+                            <Menu
+                            sx={{ mt: '45px' }}
+                            id="menu-appbar"
+                            anchorEl={anchorElUser}
+                            anchorOrigin={{
+                                vertical: 'top',
+                                horizontal: 'right',
+                            }}
+                            keepMounted
+                            transformOrigin={{
+                                vertical: 'top',
+                                horizontal: 'right',
+                            }}
+                            open={Boolean(anchorElUser)}
+                            onClose={handleCloseUserMenu}
+                            >
+                            {settings.map((setting) => (
+                                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                                    <Typography textAlign="center">{setting}</Typography>
+                                </MenuItem>
+                            ))}
+                            </Menu>
                         </div> : 
+
                         <div className = "header_button">
                             <Button variant="contained" onClick = {() => navigate('signin')}>Sign In</Button>
                             <Button variant="contained" onClick = {() => navigate('signup')}>Sign Up</Button>
